@@ -20,4 +20,11 @@ class ToDoController extends Controller
             ->with('toDos', $toDos);
     }
 
+    public function create()
+    {
+        $toDo = new ToDo;
+
+        return view('todos.create')
+            ->with('toDo', $toDo);
+    }
 }
