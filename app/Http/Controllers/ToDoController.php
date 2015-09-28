@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\ToDo;
+use App\Http\Requests\ToDoRequest;
 
 class ToDoController extends Controller
 {
@@ -26,5 +27,16 @@ class ToDoController extends Controller
 
         return view('todos.create')
             ->with('toDo', $toDo);
+    }
+
+    public function store(ToDoRequest $request)
+    {
+        $toDo = new ToDo;
+        $toDo->name = $request->get('name');
+        $toDo->description = $request->get('description');
+        $toDo->save();
+
+        return redirect(route('todos.index'))
+                ->with('flash_success', 'To Do created successfully.');
     }
 }

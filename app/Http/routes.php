@@ -11,6 +11,7 @@
 |
 */
 
+Route::get('todos/{id}/delete', ['as' => 'todos.delete', 'uses' => 'ToDoController@delete']);
 Route::resource('todos', 'ToDoController');
 
 // Authentication routes...
